@@ -1,5 +1,6 @@
 
 var dvalues = require('..');
+var sl = require('simplelists');
 
 exports['Get no datasource'] = function (test) {
     var result = dvalues.getDatasources();
@@ -27,5 +28,16 @@ exports['Add and get datasource'] = function (test) {
     test.equal(ds.name, name);
     test.deepEqual(ds.context, context);
     test.deepEqual(ds.tags, tags);
+}
+
+exports['Get datasources'] = function (test) {
+    var result = dvalues.getDatasources();
+    
+    test.ok(result);
+    test.ok(Array.isArray(result));
+    test.equal(result.length, 2);
+    test.ok(sl.exist(result, { name: 'Datasource 1' }));
+    test.ok(sl.exist(result, { name: 'Datasource 2' }));
+    test.ok(sl.exist(result, function (item) { return item.context && item.context.description == 'Description 2' && item.context.author == 'Adam'; }));
 }
 
