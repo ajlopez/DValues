@@ -1,6 +1,14 @@
 
 var dvalues = require('..');
 
+exports['Get no datasource'] = function (test) {
+    var result = dvalues.getDatasources();
+    
+    test.ok(result);
+    test.ok(Array.isArray(result));
+    test.equal(result.length, 0);
+}
+
 exports['Add datasource'] = function (test) {
     var name = 'Datasource 1';
     var context = {};
