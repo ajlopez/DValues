@@ -16,8 +16,8 @@ exports['Create datasource'] = function (test) {
     dsid = result;
 }
 
-exports['Get no variables'] = function (test) {
-    var result = dvalues.getVariables(dsid);
+exports['Get no variables from datasource'] = function (test) {
+    var result = dvalues.getDatasourceVariables(dsid);
     test.ok(result);
     test.ok(Array.isArray(result));
     test.equal(result.length, 0);
@@ -29,12 +29,12 @@ exports['Add variable'] = function (test) {
     var description = 'Variable 1';
     var properties = {};
     var tags = [];
-    var result = dvalues.addVariable(dsid, name, unit, description, properties, tags);
+    var result = dvalues.addDatasourceVariable(dsid, name, unit, description, properties, tags);
     test.ok(result);
 }
 
 exports['Get variables'] = function (test) {
-    var result = dvalues.getVariables(dsid);
+    var result = dvalues.getDatasourceVariables(dsid);
     test.ok(result);
     test.ok(Array.isArray(result));
     test.equal(result.length, 1);
