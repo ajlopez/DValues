@@ -23,6 +23,13 @@ exports['Get no variables from datasource'] = function (test) {
     test.equal(result.length, 0);
 }
 
+exports['Get no variables'] = function (test) {
+    var result = dvalues.getVariables(dsid);
+    test.ok(result);
+    test.ok(Array.isArray(result));
+    test.equal(result.length, 0);
+}
+
 exports['Add variable'] = function (test) {
     var name = 'var1';
     var unit = 'meters';
