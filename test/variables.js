@@ -24,7 +24,7 @@ exports['Get no variables from datasource'] = function (test) {
 }
 
 exports['Get no variables'] = function (test) {
-    var result = dvalues.getVariables(dsid);
+    var result = dvalues.getVariables();
     test.ok(result);
     test.ok(Array.isArray(result));
     test.equal(result.length, 0);
@@ -40,8 +40,20 @@ exports['Add variable'] = function (test) {
     test.ok(result);
 }
 
-exports['Get variables'] = function (test) {
+exports['Get variables from datasource'] = function (test) {
     var result = dvalues.getDatasourceVariables(dsid);
+    test.ok(result);
+    test.ok(Array.isArray(result));
+    test.equal(result.length, 1);
+    test.equal(result[0].name, 'var1');
+    test.equal(result[0].unit, 'meters');
+    test.equal(result[0].description, 'Variable 1');
+    test.deepEqual(result[0].properties, {});
+    test.deepEqual(result[0].tags, []);
+}
+
+exports['Get variables'] = function (test) {
+    var result = dvalues.getVariables();
     test.ok(result);
     test.ok(Array.isArray(result));
     test.equal(result.length, 1);
