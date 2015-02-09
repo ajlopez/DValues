@@ -3,6 +3,7 @@ var dvalues = require('..');
 var sl = require('simplelists');
 
 var dsid;
+var varid;
 
 exports['Create datasource'] = function (test) {
     var result = dvalues.getDatasources();
@@ -38,6 +39,7 @@ exports['Add variable'] = function (test) {
     var tags = [];
     var result = dvalues.addDatasourceVariable(dsid, name, unit, description, properties, tags);
     test.ok(result);
+    varid = result;
 }
 
 exports['Get variables from datasource'] = function (test) {
@@ -63,4 +65,15 @@ exports['Get variables'] = function (test) {
     test.deepEqual(result[0].properties, {});
     test.deepEqual(result[0].tags, []);
 }
+
+exports['Get variable'] = function (test) {
+    var result = dvalues.getVariable(varid);
+    test.ok(result);
+    test.equal(result.name, 'var1');
+    test.equal(result.unit, 'meters');
+    test.equal(result.description, 'Variable 1');
+    test.deepEqual(result.properties, {});
+    test.deepEqual(result.tags, []);
+}
+
 
