@@ -2,6 +2,8 @@
 var dvalues = require('..');
 var sl = require('simplelists');
 
+var dsid;
+
 exports['Get no datasource'] = function (test) {
     var result = dvalues.getDatasources();
     
@@ -16,6 +18,7 @@ exports['Add datasource'] = function (test) {
     var tags = [];
     var result = dvalues.addDatasource(name, context, tags);
     test.ok(result);
+    dsid = result;
 }
 
 exports['Add and get datasource'] = function (test) {
@@ -39,5 +42,12 @@ exports['Get datasources'] = function (test) {
     test.ok(sl.exist(result, { name: 'Datasource 1' }));
     test.ok(sl.exist(result, { name: 'Datasource 2' }));
     test.ok(sl.exist(result, function (item) { return item.context && item.context.description == 'Description 2' && item.context.author == 'Adam'; }));
+}
+
+exports['Delete datasource'] = function (test) {
+    dvalues.deleteDatasource(dsid);
+    var result = dvalues.getDatasource(dsid);
+    
+    test.equal(result, null);
 }
 
