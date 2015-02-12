@@ -82,3 +82,19 @@ exports['When delete the datasource, variable is deleted'] = function (test) {
     test.equal(result, null);
 }
 
+exports['Delete variable'] = function (test) {
+    var name = 'var2';
+    var unit = 'meters';
+    var description = 'Variable 2';
+    var properties = {};
+    var tags = [];
+    var newvarid = dvalues.addDatasourceVariable(dsid, name, unit, description, properties, tags);
+    test.ok(newvarid);
+    
+    test.ok(dvalues.getVariable(newvarid));
+    
+    dvalues.deleteVariable(newvarid);
+    
+    test.equal(dvalues.getVariable(newvarid));
+}
+
