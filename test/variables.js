@@ -76,12 +76,6 @@ exports['Get variable'] = function (test) {
     test.deepEqual(result.tags, []);
 }
 
-exports['When delete the datasource, variable is deleted'] = function (test) {
-    dvalues.deleteDatasource(dsid);
-    var result = dvalues.getVariable(varid);
-    test.equal(result, null);
-}
-
 exports['Delete variable'] = function (test) {
     var name = 'var2';
     var unit = 'meters';
@@ -97,4 +91,11 @@ exports['Delete variable'] = function (test) {
     
     test.equal(dvalues.getVariable(newvarid));
 }
+
+exports['When delete the datasource, variable is deleted'] = function (test) {
+    dvalues.deleteDatasource(dsid);
+    var result = dvalues.getVariable(varid);
+    test.equal(result, null);
+}
+
 
