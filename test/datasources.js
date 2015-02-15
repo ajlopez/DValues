@@ -33,6 +33,13 @@ exports['Add and get datasource'] = function (test) {
     test.deepEqual(ds.tags, tags);
 }
 
+exports['Get datasource without variables'] = function (test) {
+    var ds = dvalues.getDatasource(dsid);
+    test.ok(ds);
+    test.equal(ds.id, dsid);
+    test.equal(ds.nvariables, 0);
+}
+
 exports['Get datasources'] = function (test) {
     var result = dvalues.getDatasources();
     
@@ -41,6 +48,7 @@ exports['Get datasources'] = function (test) {
     test.equal(result.length, 2);
     test.ok(sl.exist(result, { name: 'Datasource 1' }));
     test.ok(sl.exist(result, { name: 'Datasource 2' }));
+    test.equal(sl.count(result, { nvariables: 0 }), 2);
     test.ok(sl.exist(result, function (item) { return item.context && item.context.description == 'Description 2' && item.context.author == 'Adam'; }));
 }
 
