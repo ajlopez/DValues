@@ -4,6 +4,7 @@ var sl = require('simplelists');
 
 var dsid;
 var varid;
+var valid;
 
 exports['Create datasource'] = function (test) {
     var result = dvalues.getDatasources();
@@ -96,6 +97,21 @@ exports['Deleted variable was removed from datasource'] = function (test) {
     var vars = dvalues.getDatasourceVariables(dsid);
     test.ok(vars);
     test.equal(vars.length, 1);
+}
+
+exports['Add a value to a variable'] = function (test) {
+    var context = { description: 'the answer' };
+    var result = dvalues.addVariableValue(varid, 42, { description: 'the answer' });
+    
+    test.ok(result);
+    test.equal(typeof result, 'object');
+    test.ok(result.id);
+    test.ok(result.value);
+    test.ok(result.context);
+    test.ok(result.timestamp);
+    
+    test.equal(result.value, 42);
+    test.deepEqual(result.context, context);
 }
 
 exports['When delete the datasource, variable is deleted'] = function (test) {
