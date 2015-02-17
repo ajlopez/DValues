@@ -99,6 +99,14 @@ exports['Deleted variable was removed from datasource'] = function (test) {
     test.equal(vars.length, 1);
 }
 
+exports['Get no values from variable'] = function (test) {
+    var result = dvalues.getVariableValues(varid);
+    
+    test.ok(result);
+    test.ok(Array.isArray(result));
+    test.equal(result.length, 0);
+}
+
 exports['Add a value to a variable'] = function (test) {
     var context = { description: 'the answer' };
     var result = dvalues.addVariableValue(varid, 42, { description: 'the answer' });
