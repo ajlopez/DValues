@@ -122,6 +122,18 @@ exports['Add a value to a variable'] = function (test) {
     test.deepEqual(result.context, context);
 }
 
+exports['Get values from variable'] = function (test) {
+    var result = dvalues.getVariableValues(varid);
+    
+    test.ok(result);
+    test.ok(Array.isArray(result));
+    test.equal(result.length, 1);
+    test.ok(result[0].id);
+    test.equal(result[0].value, 42);
+    test.deepEqual(result[0].context, { description: 'the answer' });
+    test.ok(result[0].timestamp);
+}
+
 exports['When delete the datasource, variable is deleted'] = function (test) {
     dvalues.deleteDatasource(dsid);
     var result = dvalues.getVariable(varid);
