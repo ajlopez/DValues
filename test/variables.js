@@ -109,7 +109,7 @@ exports['Get no values from variable'] = function (test) {
 
 exports['Add a value to a variable'] = function (test) {
     var context = { description: 'the answer' };
-    var result = dvalues.addVariableValue(varid, 42, { description: 'the answer' });
+    var result = dvalues.addVariableValue(varid, 42, context);
     
     test.ok(result);
     test.equal(typeof result, 'object');
@@ -132,6 +132,26 @@ exports['Get values from variable'] = function (test) {
     test.equal(result[0].value, 42);
     test.deepEqual(result[0].context, { description: 'the answer' });
     test.ok(result[0].timestamp);
+}
+
+exports['Add values to a variable'] = function (test) {
+    var context1 = { description: 'number one' };
+    var context2 = { description: 'number two' };
+    var result = dvalues.addVariableValues(varid, [{ value: 1, context: context1 }, { value: 2, context: context2 }]);
+    
+    test.ok(result);
+    test.ok(Array.isArray(result));
+    test.equal(2, result.length);
+    
+    test.ok(result[0].id);
+    test.ok(result[0].timestamp);
+    test.equal(result[0].value, 1);
+    test.deepEqual(result[0].context, context1);
+    
+    test.ok(result[1].id);
+    test.ok(result[1].timestamp);
+    test.equal(result[1].value, 2);
+    test.deepEqual(result[1].context, context2);
 }
 
 exports['When delete the datasource, variable is deleted'] = function (test) {
