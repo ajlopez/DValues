@@ -6,3 +6,6 @@ JavaScript/NodeJs library to manage data values, inspired by [Ubidots](http://ub
 
 - [UbiDots API](http://ubidots.com/docs/api/index.html)
 
+## Versions
+
+- 0.0.1 Published
