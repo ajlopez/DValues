@@ -38,7 +38,7 @@ exports['Add variable'] = function (test) {
     var description = 'Variable 1';
     var properties = {};
     var tags = [];
-    var result = dvalues.addDatasourceVariable(dsid, name, unit, description, properties, tags);
+    var result = dvalues.addDatasourceVariable(dsid, { name: name, unit: unit, description: description, properties: properties, tags: tags });
     test.ok(result);
     varid = result;
 }
