@@ -109,7 +109,7 @@ exports['Get no values from variable'] = function (test) {
 
 exports['Add a value to a variable'] = function (test) {
     var context = { description: 'the answer' };
-    var result = dvalues.addVariableValue(varid, 42, context);
+    var result = dvalues.addVariableValue(varid, { value: 42, context: context });
     
     test.ok(result);
     test.equal(typeof result, 'object');
